@@ -284,6 +284,7 @@ public class MainActivity extends ActionBarActivity {
                         .setDataSource(dataSource) // Optional but recommended for custom data sets.
                         .setDataType(dataType) // Can't be omitted.
                         .setSamplingRate(10, TimeUnit.SECONDS)
+                        .setAccuracyMode(SensorRequest.ACCURACY_MODE_HIGH)
                         .build(),
                 mListener)
                 .setResultCallback(new ResultCallback<Status>() {
@@ -305,6 +306,7 @@ public class MainActivity extends ActionBarActivity {
                 new SensorRequest.Builder()
                         .setDataType(dataType) // Can't be omitted.
                         .setSamplingRate(3, TimeUnit.SECONDS)
+                        .setAccuracyMode(SensorRequest.ACCURACY_MODE_HIGH)
                         .build(),
                 mListener)
                 .setResultCallback(new ResultCallback<Status>() {
