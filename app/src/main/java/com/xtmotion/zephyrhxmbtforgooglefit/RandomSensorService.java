@@ -97,6 +97,7 @@ public class RandomSensorService extends FitnessSensorService {
                 dp.setFloatValues((float) randomNum);
                 dataPoints.add(dp);
                 try {
+                    Log.i(TAG, "publishing data points: " + randomNum);
                     mRequest.getDispatcher().publish(dataPoints);
                 } catch (RemoteException e) {
                     e.printStackTrace();
