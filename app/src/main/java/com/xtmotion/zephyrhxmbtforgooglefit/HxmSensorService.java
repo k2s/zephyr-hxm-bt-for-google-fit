@@ -17,6 +17,7 @@ import com.google.android.gms.fitness.service.FitnessSensorServiceRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import zephyr.android.HxMBT.BTClient;
 
@@ -144,6 +145,7 @@ public class HxmSensorService extends FitnessSensorService {
                         DataPoint dp = DataPoint.create(mRequest.getDataSource());
                         float v = msg.getData().getFloat("HeartRate");
                         dp.setFloatValues(v);
+                        dp.setTimestamp(System.currentTimeMillis(), TimeUnit.MILLISECONDS);
                         dataPoints.add(dp);
                         try {
                             mRequest.getDispatcher().publish(dataPoints);

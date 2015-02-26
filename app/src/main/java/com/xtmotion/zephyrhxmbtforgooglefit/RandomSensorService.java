@@ -15,6 +15,7 @@ import com.google.android.gms.fitness.service.FitnessSensorServiceRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class RandomSensorService extends FitnessSensorService {
     private static final String TAG = "XT_random";
@@ -95,6 +96,7 @@ public class RandomSensorService extends FitnessSensorService {
                 DataPoint dp = DataPoint.create(mRequest.getDataSource());
                 int randomNum = rand.nextInt((195 - 60) + 1) + 60;
                 dp.setFloatValues((float) randomNum);
+                dp.setTimestamp(System.currentTimeMillis(), TimeUnit.MILLISECONDS);
                 dataPoints.add(dp);
                 try {
                     Log.i(TAG, "publishing data points: " + randomNum);
