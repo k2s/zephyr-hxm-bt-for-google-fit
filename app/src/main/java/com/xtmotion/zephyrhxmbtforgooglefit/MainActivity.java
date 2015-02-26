@@ -131,7 +131,24 @@ public class MainActivity extends ActionBarActivity {
                                 // Put application specific code here.
                                 // [END auth_build_googleapiclient_beginning]
                                 //  What to do? Find some data sources!
-                                findFitnessDataSources(DataType.TYPE_HEART_RATE_BPM);
+//                                findFitnessDataSources(DataType.TYPE_HEART_RATE_BPM);
+                                Fitness.SensorsApi.findDataSources(mClient, new DataSourcesRequest.Builder()
+                                        // At least one datatype must be specified.
+                                        .setDataTypes(DataType.TYPE_HEART_RATE_BPM)
+                                                // Can specify whether data type is raw or derived.
+                                        .setDataSourceTypes(DataSource.TYPE_RAW)
+                                        .build())
+                                        .setResultCallback(new ResultCallback<DataSourcesResult>() {
+                                            @Override
+                                            public void onResult(DataSourcesResult dataSourcesResult) {
+                                                for (DataSource dataSource : dataSourcesResult.getDataSources()) {
+                                                    Log.i(TAG, "going to register " + DataType.TYPE_HEART_RATE_BPM.getName() + " on data source " + dataSource.getName());
+                                                    registerFitnessDataListener(dataSource, DataType.TYPE_HEART_RATE_BPM);
+                                                }
+                                            }
+                                        });
+
+
                                 findFitnessDataSources(DataType.TYPE_SPEED);
 
                                 registerSimpleFitnessDataListener(DataType.TYPE_STEP_COUNT_CUMULATIVE);
@@ -264,7 +281,7 @@ public class MainActivity extends ActionBarActivity {
                     public void onResult(DataSourcesResult dataSourcesResult) {
 //                        Log.i(TAG, "Result data source query for " + dataType.getName() + ": " + dataSourcesResult.getStatus().toString());
                         for (DataSource dataSource : dataSourcesResult.getDataSources()) {
-                            Log.i(TAG, "Data source found: " + dataSource.getName());
+                            Log.i(TAG, "Data source found for " + dataType.getName() + ": " + dataSource.getName());
 //                            Log.i(TAG, "Data Source type: " + dataSource.getDataType().getName());
                         }
                     }
@@ -300,7 +317,7 @@ public class MainActivity extends ActionBarActivity {
         // [END register_data_listener]
     }
 
-    void registerSimpleFitnessDataListener(DataType dataType) {
+    void registerSimpleFitnessDataListener(final DataType dataType) {
         Fitness.SensorsApi.add(
                 mClient,
                 new SensorRequest.Builder()
@@ -313,9 +330,9 @@ public class MainActivity extends ActionBarActivity {
                     @Override
                     public void onResult(Status status) {
                         if (status.isSuccess()) {
-                            Log.i(TAG, "Listener registered!");
+                            Log.i(TAG, "Listener for " + dataType.getName() + " registered!");
                         } else {
-                            Log.i(TAG, "Listener not registered.");
+                            Log.i(TAG, "Listener for " + dataType.getName() + " not registered.");
                         }
                     }
                 });
