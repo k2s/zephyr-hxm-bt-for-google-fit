@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.xtmotion.zephyrhxmbtforgooglefit" >
+
+    <application>
+        <service
+            android:name="com.xtmotion.zephyrhxmbtforgooglefit.HxmSensorService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.fitness.service.FitnessSensorService" />
+                <!-- include at least one mimeType filter for the supported data types -->
+                <data android:mimeType="vnd.google.fitness.data_type/com.google.heart_rate.bpm" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

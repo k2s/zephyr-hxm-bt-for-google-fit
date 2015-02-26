@@ -25,27 +25,28 @@
             </intent-filter>
         </activity>
 
+        <!--services are defined for different productFlavours, -->
+        <!--because currently Google Fit doesn't support publishing of same dataType from same APK -->
+
         <!--<service-->
             <!--android:name="com.xtmotion.zephyrhxmbtforgooglefit.HxmSensorService"-->
             <!--android:enabled="true"-->
             <!--android:exported="true">-->
             <!--<intent-filter>-->
                 <!--<action android:name="com.google.android.gms.fitness.service.FitnessSensorService" />-->
-                <!--&lt;!&ndash; include at least one mimeType filter for the supported data types &ndash;&gt;-->
                 <!--<data android:mimeType="vnd.google.fitness.data_type/com.google.heart_rate.bpm" />-->
             <!--</intent-filter>-->
         <!--</service>-->
 
-        <service
-            android:name="com.xtmotion.zephyrhxmbtforgooglefit.RandomSensorService"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.google.android.gms.fitness.service.FitnessSensorService" />
-                <!-- include at least one mimeType filter for the supported data types -->
-                <data android:mimeType="vnd.google.fitness.data_type/com.google.heart_rate.bpm" />
-            </intent-filter>
-        </service>
+        <!--<service-->
+            <!--android:name="com.xtmotion.zephyrhxmbtforgooglefit.RandomSensorService"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="true">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.google.android.gms.fitness.service.FitnessSensorService" />-->
+                <!--<data android:mimeType="vnd.google.fitness.data_type/com.google.heart_rate.bpm" />-->
+            <!--</intent-filter>-->
+        <!--</service>-->
 
     </application>
 
