@@ -99,7 +99,7 @@ public class RandomSensorService extends FitnessSensorService {
                 dp.setTimestamp(System.currentTimeMillis(), TimeUnit.MILLISECONDS);
                 dataPoints.add(dp);
                 try {
-                    Log.i(TAG, "publishing data points: " + randomNum);
+                    Log.d(TAG, "publishing data points: " + randomNum);
                     mRequest.getDispatcher().publish(dataPoints);
                 } catch (RemoteException e) {
                     e.printStackTrace();

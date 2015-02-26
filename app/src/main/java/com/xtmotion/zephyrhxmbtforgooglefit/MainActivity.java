@@ -110,7 +110,7 @@ public class MainActivity extends ActionBarActivity {
             public void onDataPoint(DataPoint dataPoint) {
                 for (Field field : dataPoint.getDataType().getFields()) {
                     Value val = dataPoint.getValue(field);
-                    Log.i(TAG, "DataPoint " + field.getName() + " = " + val);
+                    Log.d(TAG, "DataPoint " + field.getName() + " = " + val);
                 }
             }
         };
